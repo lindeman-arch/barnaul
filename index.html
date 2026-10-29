@@ -707,6 +707,8 @@ html,body{margin:0;height:100%;background:var(--bg);font-family:'Golos Text',Ari
 #src .x{border:0;background:none;font-size:26px;cursor:pointer;color:var(--muted)}
 #src .body{overflow-y:auto;padding:14px 20px 20px;font-size:13px;line-height:1.5}
 #src .body p{margin:0 0 8px}
+#src .body h4{font-family:'PT Serif',Georgia,serif;font-size:17px;margin:16px 0 6px}
+#src .body h4:first-child{margin-top:0}
 #src .body a{color:var(--muted)}
 #srcBody .note{color:#8a847a}
 #srcBody .url{font-size:11px;color:#8a847a;word-break:break-all}
@@ -771,8 +773,8 @@ html,body{margin:0;height:100%;background:var(--bg);font-family:'Golos Text',Ari
 <div id="head"><div class="eyebrow">История архитектуры · Барнаул</div><div id="year">1739</div><div id="epoch"></div></div>
 <div id="scene"><h3></h3><p></p></div>
 <div id="card"></div>
-<button id="srcBtn">Источники фото</button>
-<div id="src"><div class="head"><b>Источники фото</b><button class="x" id="srcX" aria-label="Закрыть">×</button></div><div class="body" id="srcBody"></div></div>
+<button id="srcBtn">Авторы и источники</button>
+<div id="src"><div class="head"><b>Авторы и источники</b><button class="x" id="srcX" aria-label="Закрыть">×</button></div><div class="body" id="srcBody"></div></div>
 <div id="tl">
   <button id="play" title="Проиграть">▶</button>
   <div id="track"><div id="bands"></div><div id="axis"></div><div id="ticks"></div><div id="dots"></div><div id="handle"></div></div>
@@ -1091,7 +1093,7 @@ function credit(k){
   const uses={}, add=(k,n)=>{ if(k&&CR[k]){ (uses[k]=uses[k]||[]).includes(n)||uses[k].push(n); } };
   SC.forEach(s=>add(s.img,s.h)); B.forEach(b=>add(b.ph,b.n)); EV.forEach(e=>add(e[3],e[1]));
   PLANS.forEach(p=>add(p.key,'Старый план на карте ('+p.from+'–'+p.to+')'));
-  document.getElementById('srcBody').innerHTML='<p class="note">Фотографии использованы на условиях свободных лицензий, указанных у каждого снимка (Creative Commons или общественное достояние). Источник — архив Wikimedia Commons. Карта — © участники OpenStreetMap (ODbL).</p>'+
+  document.getElementById('srcBody').innerHTML='<h4>Кто сделал</h4><p><b>Анна Линдеман, Даниил Онуфриенко</b> — архитекторы. Барнаул, 2026.<br>Почта: <a href="mailto:lindeman-arch@yandex.ru">lindeman-arch@yandex.ru</a></p><h4>Литература</h4><p>Старцев А.В., Тяпкин В.Д. и др. История Барнаула. — Барнаул, 2000.</p><p>Бородаев В.Б., Контев А.В. У истоков истории Барнаула. — Барнаул, 2000.</p><p>История Алтая. Т. 2: Алтай в конце XVII – начале XX в. — Барнаул, 2019 (разделы об архитектуре — Т.М. Степанская).</p><p>Русакович Е.В. Художественные особенности старого здания железнодорожного вокзала станции Барнаул // Архитектон: известия вузов. 2020. № 3 (71). <a href="http://archvuz.ru/2020_3/10" target="_blank">archvuz.ru/2020_3/10</a></p><p>Блатова О.Ю. Эфемерные факты и выявленные сведения о проекте города-сада в Барнауле начале XX века // Архитектон: известия вузов. 2021. № 4 (76). <a href="http://archvuz.ru/2021_4/9" target="_blank">archvuz.ru/2021_4/9</a></p><p>Блатова О.Ю. Памятники федерального значения на территории Алтайского края: проблемы сохранения // Строительство и реконструкция. 2022. № 5 (103). С. 80–93. <a href="https://doi.org/10.33979/2073-7416-2022-103-5-80-93" target="_blank">doi.org/10.33979/2073-7416-2022-103-5-80-93</a></p><h4>Источники фото</h4><p class="note">Фотографии использованы на условиях свободных лицензий, указанных у каждого снимка (Creative Commons или общественное достояние). Источник — архив Wikimedia Commons. Карта — © участники OpenStreetMap (ODbL).</p>'+
     Object.keys(uses).map(k=>'<p><b>'+uses[k].join(', ')+'</b> — '+credit(k)+(CR[k].u?'<br><span class="url">'+decodeURI(CR[k].u).replace(/^https?:\/\//,'')+'</span>':'')+'</p>').join('');
   document.getElementById('srcBtn').addEventListener('click',()=>document.getElementById('src').classList.add('open'));
   document.getElementById('srcX').addEventListener('click',()=>document.getElementById('src').classList.remove('open'));
